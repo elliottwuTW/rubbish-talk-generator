@@ -1,0 +1,58 @@
+<h2 class="text-center my-3">你想對誰說幹話？</h2>
+
+<div class="container" style="width: 1000px;">
+  <form action="/" method="POST">
+    {{!-- 選擇幹話對象 --}}
+    <div class="row">
+      {{#each targetItems}}
+      <div class="col border m-2">
+        <label for="{{@key}}" style="cursor: pointer;">
+          <div class="d-flex justify-content-center">
+            <img src="{{this.image}}" class="mb-2" alt="{{this.title}}" style="width: 100%; height: 30vh;">
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <input class="mr-2" type="radio" name="target" id="{{@key}}" value="{{@key}}"
+              {{#ifEquals ../target @key}}checked{{/ifEquals}}>
+            <span>{{this.title}}</span>
+          </div>
+        </label>
+      </div>
+      {{/each}}
+
+      {{!-- <! 樣板 >
+      <div class="col border m-2">
+        <label for="engineer" style="cursor: pointer;">
+          <div class="d-flex justify-content-center">
+            <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5668/angry-developer.jpg"
+              class="mb-2" alt="工程師" style="width: 100%;">
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <input class="mr-2" type="radio" name="target" id="engineer" value="engineer">
+            <span>工程師</span>
+          </div>
+        </label>
+      </div> --}}
+    </div>
+
+    {{!-- 警告提示 --}}
+    {{#if noTarget}}
+    <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+      <strong>請選擇對象!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {{/if}}
+
+    {{!-- 幹話產生區 --}}
+    <div class="row align-items-start mt-2">
+      <div class="col-2">
+        <button class="btn btn-primary">產生幹話</button>
+      </div>
+      <div class="col-10">
+        <textarea style="width: 100%;">{{result}}</textarea>
+      </div>
+    </div>
+
+  </form>
+</div>
